@@ -25,6 +25,9 @@ library(knitr)
 
 # data
 cnts <- read.table("read-counts.txt", sep="\t", header=T)
+cnts$clip_enrichment <- cnts$CLIP.35L33G.bam/cnts$RNA.control.bam
+cnts$rden_change <- cnts$RPF.siLin28a.bam/cnts$RNA.siLin28a.bam/
+  (cnts$RPF.siLuc.bam/cnts$RNA.siLuc.bam)
 mouselocal <- read.table("mouselocal.txt", sep="\t", header = T)
 ```
 
@@ -40,5 +43,78 @@ kable(head(mouselocal))
 # 1. How to solve the problem
 그냥 그리면 논문과 아주 많이 다른 그래프를 어떻게 더 프로세스할 것인가?
 ```{r}
+#without any other process
+ggplot(cnts, aes(x = log2(clip_enrichment), y = log2(rden_change))) +
+  geom_point(size = 0.5, alpha=0.5)
+```
 
+
+## removing inf, -inf
+inf, -inf, NA값들을 우선 제거한다.
+```{r}
+#remove inf or NA
+cnts2 <- cnts
+cnts2$clip_enrichment[is.infinite(cnts2$clip_enrichment)] <- NA
+cnts2$rden_change[is.infinite(cnts2$rden_change)] <- NA
+cnts2 <- na.omit(cnts2)
+
+#remove 0 on calculated value since log0 is -inf
+cnts2 <- cnts2 %>% filter(clip_enrichment !=0 &
+                          rden_change != 0)
+
+#graph
+ggplot(cnts2, aes(x = log2(clip_enrichment), y = log2(rden_change))) +
+  geom_point(size = 0.5, alpha=0.3)
+```
+
+## excluding outliers
+중앙에서 바깥쪽에 있는 값들은 특정 cutoff 를 적용하여 없앤다.  
+
+```{r}
+#add log transformed variables
+cnts2$xaxis <- log2(cnts2$clip_enrichment)
+cnts2$yaxis <- log2(cnts2$rden_change)
+
+#histogram (EDA)
+par(mfrow=c(1,2))
+hist(cnts2$xaxis)
+hist(cnts2$yaxis)
+```
+log transformed data의 분포모양이 정규분포와 비슷한 모양을 보인다.  
+그래서 평균으로 부터 $\mu\pm3\sigma$ 범위의 값만을 남겨서 데이터의 95.25%만 가지고 시각화하기로 한다.
+```{r}
+x_lb <- mean(cnts2$x) - 3*sd(cnts2$x)
+x_ub <- mean(cnts2$x) + 3*sd(cnts2$x)
+y_lb <- mean(cnts2$y) - 3*sd(cnts2$y)        
+y_ub <- mean(cnts2$y) + 3*sd(cnts2$y)
+
+cnts3 <- cnts2 %>% filter(xaxis >=x_lb & xaxis <= x_ub & yaxis >= y_lb & yaxis <= y_ub)
+
+ggplot(cnts3, aes(x = xaxis, y = yaxis)) +
+  geom_point(size = 0.5, alpha=0.3)
+```
+
+# 2. Merge location data
+location 정보를 합쳐서 해당 정보가 있는 gene만을 한번 더 선별 할 수 있다.
+```{r}
+#extract gene_id form Geneid
+idlen <- nchar(cnts3$Geneid)[1]
+cnts3 <- cnts3 %>% mutate(geneid2 =substr(Geneid, 1, idlen-2))
+colnames(cnts3)
+
+#merge two dataframe
+df <- merge(mouselocal, cnts3[13:17], by.x = "gene_id", by.y = "geneid2")
+
+#gene filter history
+cat("1. initial(original): ", nrow(cnts), 
+    "\n2. removing inf and NA: ", nrow(cnts2), 
+    "\n3. outlier filtering: ", nrow(cnts3),
+    "\n4. only gene with protein localization info: ", nrow(df))
+```
+```{r}
+ggplot(df, aes(x = xaxis, y = yaxis)) +
+  geom_point(size = 0.5, alpha=0.3)
+
+ggplot(df, aes(x = xaxis, y = yaxis, color = type)) +
+  geom_point(size = 0.5, alpha=0.3)
 ```
