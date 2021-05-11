@@ -9,28 +9,36 @@ output:
     toc: true
     toc_float: true
     df_print: paged
-
+---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+# 0. Import Library and Data
+```{r, message=F}
+# libraries
+library(dplyr)
+library(ggplot2)
+library(knitr)
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+# data
+cnts <- read.table("read-counts.txt", sep="\t", header=T)
+mouselocal <- read.table("mouselocal.txt", sep="\t", header = T)
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r}
+# count data
+kable(head(cnts))
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r}
+# protein location data
+kable(head(mouselocal))
+```
+# 1. How to solve the problem
+그냥 그리면 논문과 아주 많이 다른 그래프를 어떻게 더 프로세스할 것인가?
+```{r}
+
+```
