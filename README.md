@@ -5,20 +5,25 @@ Exercise making **Figure5B** in **Cho, Jun, et al. "LIN28A is a suppressor of ER
 
 
 
-1. *CoLab_termProj_provided.ipynb*
+1. *CoLab_termProj_provided.ipynb* (provided previously)
 
-   Data generation to investigate the correlation between CLIP enrichment and RPF density change in LIN28A-knockdown cells.
+   * Data generation to investigate the correlation between CLIP enrichment and RPF density change in LIN28A-knockdown cells.
 
-   Acquired the transcript count table from from provided data.  
+   * Acquired the transcript count table from from provided data.  
+
+   Run cells as presented on the jupyter notebook.
 
     
 
-2. *mission01.Rmd* and *mission01.html*
+2. *mission01.Rmd* and *mission01.html* 
 
-   Imported data: the transcript count table and protein localization information for genes
+   * Imported data: the transcript count table and protein localization information for genes
 
-   Removed extremes and adjusted the cut-off for a better visualization
+   * Removed extremes and adjusted the cut-off for a better visualization
 
-   Merged subcellular location information to the transcript count table    
+   * Merged subcellular location information to the transcript count table    
 
-   Optimized the graph
+   * Optimized the graph
+
+   Worked in Rmarkdown `.Rmd` and saved the output in html  `.html`
+
