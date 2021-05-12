@@ -98,7 +98,7 @@ ggplot(cnts3, aes(x = xaxis, y = yaxis)) +
   geom_point(size = 0.5, alpha=0.3)
 ```
 
-# 2. Merge Subcelluar Location
+# 2. Merge Subcellular Location
 localization 정보를 합쳐서 해당 정보가 있는 gene만을 한번 더 선별 할 수 있다.
 ```{r}
 #extract gene_id form Geneid
