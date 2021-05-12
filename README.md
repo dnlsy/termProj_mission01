@@ -5,7 +5,7 @@ Exercise making **Figure5B** in **Cho, Jun, et al. "LIN28A is a suppressor of ER
 
 
 
-1. *CoLab_termProj_provided.ipynb* (provided previously)
+### 1. *CoLab_termProj_provided.ipynb* (provided previously)
 
    * Data generation to investigate the correlation between CLIP enrichment and RPF density change in LIN28A-knockdown cells.
 
@@ -15,7 +15,8 @@ Exercise making **Figure5B** in **Cho, Jun, et al. "LIN28A is a suppressor of ER
 
     
 
-2. *mission01.Rmd* and *mission01.html* 
+
+### 2. *mission01.Rmd* and *mission01.html* 
 
    * Imported data: the transcript count table and protein localization information for genes
 
