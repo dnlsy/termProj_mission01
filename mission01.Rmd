@@ -40,7 +40,7 @@ kable(head(cnts))
 # protein localization data
 kable(head(mouselocal))
 ```
-# 1. How to Solve the Problem
+# 1. The problem to solve out
 ## 1.1. Raw graph
 그냥 그리면 논문과 아주 많이 다른 그래프를 어떻게 더 프로세스할 것인가?
 ```{r}
@@ -50,10 +50,38 @@ ggplot(cnts, aes(x = log2(clip_enrichment), y = log2(rden_change))) +
 ```
 
 
-## 1.2 Removing NAs
-NA값들을 우선 제거한다.  
-inf, -inf 값도 그래프에서 표현이 어려우므로 제거한다.  
-0인 값은 log 변환 시 -inf가 되므로 이 또한 제거한다.
+## 1.2 explore more on the read count data
+```{r}
+colnames(cnts)
+
+par(mfrow = c(3,2))
+hist(cnts$CLIP.35L33G.bam)
+hist(cnts$RNA.control.bam)
+hist(cnts$RNA.siLin28a.bam)
+hist(cnts$RNA.siLuc.bam)
+hist(cnts$RPF.siLin28a.bam)
+hist(cnts$RPF.siLuc.bam)
+```
+
+히스토그램으로는 보기 어려우니 statistic summary로 보자
+```{r}
+colnames(cnts)
+summary(cnts[7:12])
+```
+모든 read count의 median이 다 0이다. 사분위수 아닌 십분위수로도 summary 해보자
+```{r}
+for (i in 7:12){
+  print(paste0("========", colnames(cnts)[i], "========="))
+  print(quantile(cnts[,i], seq(0,1,0.1)))
+}
+print("================")
+sprintf("the number of current genes : %d", nrow(cnts))
+```
+전체 55359개의 유전자 중 약 5000개 내외의 유전자를 남기고자하며, 따라서 cut-off를 read count 100정도롤 잡아본다.
+```{r}
+cnts2 <- cnts1
+```
+
 
 ```{r}
 #remove inf or NA
