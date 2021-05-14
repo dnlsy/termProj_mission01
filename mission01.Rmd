@@ -78,7 +78,6 @@ print("================")
 sprintf("the number of current genes : %d", nrow(cnts))
 ```
 
-##1.1 method01
 전체 55359개의 유전자 중 약 5000개 내외의 유전자를 남기고자하며, 따라서 cut-off를 read count 100정도롤 잡아본다.
 ```{r}
 colnames(cnts)
@@ -87,9 +86,10 @@ cnts2 <- cnts[apply(cnts[,7:12], 1, function (x) all(x >=100)),]
 ggplot(cnts2, aes(x = log2(clip_enrichment), y = log2(rden_change))) +
   geom_point(size = 0.5, alpha=0.3)
 ```
+훨씬 나아 보인다.
 
 # 2. Merge Subcellular Location
-localization 정보를 합쳐서 해당 정보가 있는 gene만을 한번 더 선별 할 수 있다.
+read count data의 Geneid를 protein localization데이터셋의 gene_id와 맞춰서 데이터셋을 합쳐준다.
 ```{r}
 #extract gene_id form Geneid
 cnts2 <- cnts2 %>% mutate(geneid2 = sub("(*)[.]\\d+", "\\1", Geneid))
@@ -100,6 +100,7 @@ colnames(cnts2)
 df <- merge(mouselocal, cnts2[13:15], by.x = "gene_id", by.y = "geneid2")
 ```
 
+이제 합쳐진 df만 가지고 작업한다.
 ```{r}
 ggplot(df, aes(x = log2(clip_enrichment), y = log2(rden_change))) +
   geom_point(size = 0.5, alpha=0.3)
