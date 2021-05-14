@@ -129,11 +129,12 @@ ggplot(df2, aes(x = log2(clip_enrichment), y = log2(rden_change), color = type))
 ## 3.2. Customizing the graph
 ```{R}
 ggplot(df2, aes(x = log2(clip_enrichment), y = log2(rden_change), color = type)) +
-  geom_point(size = 1, alpha=0.8) +  lims(y=c(-2.5,1)) +
+  geom_point(size = 1, alpha=0.8) +  lims(y=c(-3,2),x=c(-4,4.5)) +
   labs(x = expression("LIN28A CLIP enrichment (log"[2]*")"),
        y = expression("Ribosome density change upon "*italic(Lin28a)*" knockdown (log"[2]*")")) +
-  theme_bw() + theme(legend.position = c(0.22,0.87), legend.title = element_blank(),
+  theme_bw() + theme(legend.position = c(0.25,0.87), legend.title = element_blank(),
                      legend.background = element_rect(colour = "#888888", size =0.5),
-                     legend.text = element_text(size = 12)) + 
-  scale_color_manual(values = c("#008000", "#DC143C", "#1E90FF"))
+                     legend.text = element_text(size = 10)) + 
+  scale_color_manual(values = c("#008000", "#DC143C", "#1E90FF")) +
+  coord_fixed(ratio = 2)
 ```
