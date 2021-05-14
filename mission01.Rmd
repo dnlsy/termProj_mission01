@@ -40,9 +40,9 @@ kable(head(cnts))
 # protein localization data
 kable(head(mouselocal))
 ```
-# 1. The problem to solve out
-## 1.1. Raw graph
-그냥 그리면 논문과 아주 많이 다른 그래프를 어떻게 더 프로세스할 것인가?
+# 1. The Problem to Solve out
+## 1.1. The raw graph
+* 그냥 그리면 논문과 아주 많이 다른 그래프를 어떻게 더 프로세스할 것인가?
 ```{r}
 #without any other process
 ggplot(cnts, aes(x = log2(clip_enrichment), y = log2(rden_change))) +
@@ -50,7 +50,7 @@ ggplot(cnts, aes(x = log2(clip_enrichment), y = log2(rden_change))) +
 ```
 
 
-## 1.2 explore more on the read count data
+## 1.2 Explore more on the read count data
 ```{r}
 colnames(cnts)
 
@@ -63,12 +63,12 @@ hist(cnts$RPF.siLin28a.bam)
 hist(cnts$RPF.siLuc.bam)
 ```
 
-히스토그램으로는 보기 어려우니 statistic summary로 보자
+* 히스토그램으로는 보기 어려우니 statistic summary로 보자
 ```{r}
 colnames(cnts)
 summary(cnts[7:12])
 ```
-모든 read count의 median이 다 0이다. 사분위수 아닌 십분위수로도 summary 해보자
+* 모든 read count의 median이 다 0이다. 사분위수 아닌 십분위수로도 summary 해보자
 ```{r}
 for (i in 7:12){
   print(paste0("========", colnames(cnts)[i], "========="))
@@ -78,7 +78,7 @@ print("================")
 sprintf("the number of current genes : %d", nrow(cnts))
 ```
 
-전체 55359개의 유전자 중 약 5000개 내외의 유전자를 남기고자하며, 따라서 cut-off를 read count 100정도롤 잡아본다.
+* 전체 55359개의 유전자 중 약 5000개 내외의 유전자를 남기고자하며, 따라서 cut-off를 read count 100정도롤 잡아본다.
 ```{r}
 colnames(cnts)
 cnts2 <- cnts[apply(cnts[,7:12], 1, function (x) all(x >=100)),]
@@ -86,7 +86,8 @@ cnts2 <- cnts[apply(cnts[,7:12], 1, function (x) all(x >=100)),]
 ggplot(cnts2, aes(x = log2(clip_enrichment), y = log2(rden_change))) +
   geom_point(size = 0.5, alpha=0.3)
 ```
-훨씬 나아 보인다.
+  
+* 훨씬 나아 보인다.
 
 # 2. Merge Subcellular Location
 read count data의 Geneid를 protein localization데이터셋의 gene_id와 맞춰서 데이터셋을 합쳐준다.
@@ -98,9 +99,10 @@ cnts2$geneid2[1:5]
 #merge two dataframe
 colnames(cnts2)
 df <- merge(mouselocal, cnts2[13:15], by.x = "gene_id", by.y = "geneid2")
+dim(df)
 ```
-
-이제 합쳐진 df만 가지고 작업한다.
+* 두개의 데이터 세트에서 정보가 모두 있는 유전자들만 합쳤더니 데이터 사이즈가 3000개 조금 넘도록 또 많이 줄었다.  
+한번 그래프가 어떻게 보이는 지 보자.
 ```{r}
 ggplot(df, aes(x = log2(clip_enrichment), y = log2(rden_change))) +
   geom_point(size = 0.5, alpha=0.3)
@@ -108,9 +110,11 @@ ggplot(df, aes(x = log2(clip_enrichment), y = log2(rden_change))) +
 ggplot(df, aes(x = log2(clip_enrichment), y = log2(rden_change), color = type)) +
   geom_point(size = 0.5, alpha=0.7)
 ```
+  
+* 여전히 나쁘지 않게 보인다. 이제 df를 가지고 그래프 최적화 추가작업을 진행한다. 
 
 # 3. Optimize Visualization
-## 3.1. Random sampling for each localization type
+## 3.1. Random sampling for each localization
 ```{r}
 localtype <- unique(df$type)
 df2 <- data.frame()
