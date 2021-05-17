@@ -28,10 +28,10 @@ Exercise making **Figure5B** in **Cho, Jun, et al. "LIN28A is a suppressor of ER
 
    Worked in Rmarkdown `.Rmd` 
 
-# 
+​    
 
-## 3. Output files: mission01.html and mission01.md
+### 3. Output files: mission01.html and mission01.md
 
 * Rmarkdown outputs in `.html` and `.md`
-* `.md` for looking the results easily in GitHub
+* `.md` viewable directly in Github
 
