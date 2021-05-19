@@ -1,9 +1,13 @@
-# termProj_mission01
+# termProject
 bioinformatics_practice1 (2021 Spring, SNU) TermProject01  
 
-Exercise making **Figure5B** in **Cho, Jun, et al. "LIN28A is a suppressor of ER-associated translation in embryonic stem cells." *Cell* 151.4 (2012): 765-777**.
+From **Cho, Jun, et al. "LIN28A is a suppressor of ER-associated translation in embryonic stem cells." *Cell* 151.4 (2012): 765-777**.
 
+  
 
+# Mission01
+
+making figure5B in the article
 
 ### 1. *CoLab_termProj_provided.ipynb* (provided previously)
 
@@ -13,10 +17,8 @@ Exercise making **Figure5B** in **Cho, Jun, et al. "LIN28A is a suppressor of ER
 
    Run cells as presented on the jupyter notebook.
 
-​    
 
-
-### 2. *mission01.Rmd* and *mission01.html* 
+### 2. *mission01.Rmd* and *mission01.html* (working in R)
 
    * Imported data: the transcript count table and protein localization information for genes
 
@@ -28,10 +30,19 @@ Exercise making **Figure5B** in **Cho, Jun, et al. "LIN28A is a suppressor of ER
 
    Worked in Rmarkdown `.Rmd` 
 
-​    
-
 ### 3. Output files: mission01.html and mission01.md
 
 * Rmarkdown outputs in `.html` and `.md`
+
 * `.md` viewable directly in Github
+
+    
+
+# Mission2
+
+making supplementary figure S5A
+
+### 1. _makingGraph.ipynb_
+
+
 
