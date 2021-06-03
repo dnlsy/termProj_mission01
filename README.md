@@ -47,3 +47,26 @@ making supplementary figure S2A
 
 * 1과 2프로세스 과정 모두 `mission3/mission03.ipynb`
 
+  
+
+  
+
+  
+
+# My Own Project
+
+From **Guo, Yue, et al. "DNA methylome and transcriptome alterations and cancer prevention by curcumin in colitis-accelerated colon cancer in mice." *Carcinogenesis* 39.5 (2018): 669-680.**
+
+![goal_myproject](/Users/hem/sy_code/BI_prac/termProj/mission1/goal_myproject.png)
+
+ 
+
+1. SRA data download (shell script)
+
+2. Alignment (STAR w/ mm39)
+
+3. Feature Count data
+
+4. DEG analysis and visualization (DESeq2)
+
+   
