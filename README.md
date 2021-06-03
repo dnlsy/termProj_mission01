@@ -13,7 +13,7 @@ From **Cho, Jun, et al. "LIN28A is a suppressor of ER-associated translation in 
 
 making figure5B in the article
 
-[target figure image]
+![goal_mission1](goal_mission1.png)
 
 1. 제공된 CoLab 노트북을 진행하여 transcrpit count table 을 획득
    * `mission1/CoLab_TermProj_provided.ipynb`
@@ -27,7 +27,7 @@ making figure5B in the article
 
 making supplementary figure S5A
 
-[target figure image]
+![goal_mission2](goal_mission2.png)
 
 1. 제공된 CoLab노트북을 진행하여 start codon지역의 5'-end의 coverage count를 획득
 2. 1의 결과를 start codon 대비 relative position 별 read count 그래프를 획득
@@ -40,7 +40,7 @@ making supplementary figure S5A
 
 making supplementary figure S2A
 
-[target figure image]
+![goal_mission3](goal_mission3.png)
 
 1. 제공된 CoLab노트북 과정대로 Mirlet7d, Mirlet__, Mirlet7f-1유전자의 pileup 데이터 획득
 2. shannon entropy 계산 및 USCS Genome Browser에서의 figure 획득
