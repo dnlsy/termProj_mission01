@@ -42,7 +42,7 @@ making supplementary figure S2A
 
 ![goal_mission3](goal_mission3.png)
 
-1. 제공된 CoLab노트북 과정대로 Mirlet7d, Mirlet__, Mirlet7f-1유전자의 pileup 데이터 획득
+1. 제공된 CoLab노트북 과정대로 Mirlet7g, Mirlet7d, Mirlet7f-1유전자의 pileup 데이터 획득
 2. shannon entropy 계산 및 USCS Genome Browser에서의 figure 획득
 
 * 1과 2프로세스 과정 모두 `mission3/mission03.ipynb`
@@ -57,7 +57,7 @@ making supplementary figure S2A
 
 From **Guo, Yue, et al. "DNA methylome and transcriptome alterations and cancer prevention by curcumin in colitis-accelerated colon cancer in mice." *Carcinogenesis* 39.5 (2018): 669-680.**
 
-![goal_myproject](/Users/hem/sy_code/BI_prac/termProj/mission1/goal_myproject.png)
+![goal_myproject](goal_myproject.png)
 
  
 
