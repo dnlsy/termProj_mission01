@@ -55,18 +55,4 @@ making supplementary figure S2A
 
 # My Own Project
 
-From **Guo, Yue, et al. "DNA methylome and transcriptome alterations and cancer prevention by curcumin in colitis-accelerated colon cancer in mice." *Carcinogenesis* 39.5 (2018): 669-680.**
-
-![goal_myproject](goal_myproject.png)
-
- 
-
-1. SRA data download (shell script)
-
-2. Alignment (STAR w/ mm39)
-
-3. Feature Count data
-
-4. DEG analysis and visualization (DESeq2)
-
-   
+1. 
